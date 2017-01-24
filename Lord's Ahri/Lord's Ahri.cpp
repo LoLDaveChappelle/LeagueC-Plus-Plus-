@@ -79,25 +79,37 @@ void Combo()
 {
 	if (ComboQ->Enabled())
 	{
-		auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, Q->Range());
-		Q->CastOnTarget(target, kHitChanceHigh);
+		if (Q->IsReady())
+		{
+			auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, Q->Range());
+			Q->CastOnTarget(target, kHitChanceHigh);
+		}
 	}
 	if (ComboW->Enabled())
 	{
-		auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, W->Range());
-		W->CastOnTarget(target, kHitChanceHigh);
+		if (W->IsReady())
+		{
+			auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, W->Range());
+			W->CastOnTarget(target, kHitChanceHigh);
+		}
 	}
 	if (ComboE->Enabled())
 	{
-		auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, E->Range());
-		E->CastOnTarget(target, kHitChanceHigh);
+		if (E->IsReady())
+		{
+			auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, E->Range());
+			E->CastOnTarget(target, kHitChanceHigh);
+		}
 	}
 	if (ComboR->Enabled())
 	{
-		auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, R->Range());
-		if (target->HealthPercent() <= ComboREnemies->GetFloat())
+		if (R->IsReady())
 		{
-			R->CastOnTarget(target, kHitChanceHigh);
+			auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, R->Range());
+			if (target->HealthPercent() <= ComboREnemies->GetFloat())
+			{
+				R->CastOnTarget(target, kHitChanceHigh);
+			}
 		}
 	}
 }
@@ -105,11 +117,17 @@ void Farm()
 {
 	if (FarmQ->Enabled())
 	{
-		Q->LastHitMinion();
+		if (Q->IsReady())
+	    {
+		    Q->LastHitMinion();
+	    }
 	}
 	if (FarmW->Enabled())
 	{
-		W->LastHitMinion();
+		if (W->IsReady())
+		{
+			W->LastHitMinion();
+		}
 	}
 
 }
