@@ -2,9 +2,9 @@
   PluginSDK.cpp
      Creating library C:\Users\docum\Documents\Scripts\Lord's Ahri\Release\Lord's Ahri.lib and object C:\Users\docum\Documents\Scripts\Lord's Ahri\Release\Lord's Ahri.exp
   Generating code
-  5 of 10 functions (50.0%) were compiled, the rest were copied from previous compilation.
+  1 of 10 functions (10.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   Lord's Ahri.vcxproj -> C:\Users\docum\Documents\Scripts\Lord's Ahri\Release\Lord's Ahri.dll
   Lord's Ahri.vcxproj -> C:\Users\docum\Documents\Scripts\Lord's Ahri\Release\Lord's Ahri.pdb (Full PDB)

@@ -51,11 +51,11 @@ void  Menu()
 	ComboE = EMenu->CheckBox("Use E", true);
 	 	 
 	ComboR = RMenu->CheckBox("Auto R when enemies killable", true);
-	ComboREnemies = RMenu->AddFloat("Enemies Health %",0,100,20);
+	ComboREnemies = RMenu->AddInteger("Enemies Health %",0,100,20);
 	DrawReady = Drawings->CheckBox("Draw Only Ready Spells", true);
 
 	DrawQ = Drawings->CheckBox("Draw Q", true);
-	DrawW = Drawings->CheckBox("Draw Q", true);
+	DrawW = Drawings->CheckBox("Draw W", true);
 	DrawE = Drawings->CheckBox("Draw E", true);
 }
 void LoadSpells()
@@ -65,7 +65,7 @@ void LoadSpells()
 	E = GPluginSDK->CreateSpell2(kSlotE, kLineCast, true, false,  static_cast<eCollisionFlags>(kCollidesWithMinions | kCollidesWithYasuoWall));
 	R = GPluginSDK->CreateSpell2(kSlotR, kLineCast, false, false, static_cast<eCollisionFlags>(kCollidesWithYasuoWall));
 	Q->SetOverrideRange(870);
-	W->SetOverrideRange(580);
+	W->SetOverrideRange(670);
 	E->SetOverrideRange(950);
 	R->SetOverrideRange(600);
 	Q->SetOverrideDelay(0.25f);
@@ -106,7 +106,7 @@ void Combo()
 		if (R->IsReady())
 		{
 			auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, R->Range());
-			if (target->HealthPercent() <= ComboREnemies->GetFloat())
+			if (target->HealthPercent() <= ComboREnemies->GetInteger())
 			{
 				R->CastOnTarget(target, kHitChanceHigh);
 			}
