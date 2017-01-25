@@ -1,0 +1,12 @@
+﻿  stdafx.cpp
+  dllmain.cpp
+  Lord's Malphite.cpp
+c:\users\docum\documents\scripts\lord's malphite\lord's malphite\Color.h(20): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+c:\users\docum\documents\scripts\lord's malphite\lord's malphite\Color.h(25): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+  PluginSDK.cpp
+     Creating library C:\Users\docum\Documents\Scripts\Lord's Malphite\Release\Lords Malphite.lib and object C:\Users\docum\Documents\Scripts\Lord's Malphite\Release\Lords Malphite.exp
+  Generating code
+  All 16 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Lord's Malphite.vcxproj -> C:\Users\docum\Documents\Scripts\Lord's Malphite\Release\Lords Malphite.dll
+  Lord's Malphite.vcxproj -> C:\Users\docum\Documents\Scripts\Lord's Malphite\Release\Lords Malphite.pdb (Full PDB)
