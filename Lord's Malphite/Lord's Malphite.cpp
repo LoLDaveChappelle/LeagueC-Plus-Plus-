@@ -25,6 +25,7 @@ IMenuOption* FarmW;
 IMenuOption* ComboW;
 IMenuOption* QGapCloser;
 IMenuOption* AutoE;
+IMenuOption* AutoUlt;
 IMenuOption* ComboE;
 IMenuOption* ComboR;
 IMenuOption* UltEnemies;
@@ -59,10 +60,11 @@ void  Menu()
 	
 	AutoE = EMenu->CheckBox("Auto E", true);
 	ComboE = EMenu->CheckBox("Use E", true);
-	FarmE = EMenu->CheckBox("Use E Farm", true);
+	FarmE = EMenu->CheckBox("Use E Farm", true);	
 	FarmEHit = EMenu->AddInteger("Use E if hits >= x minions", 1, 10, 3);
 	HarassManaE = EMenu->AddInteger("Mana Manager(%)(AutoE/FarmE)", 1, 100, 60);
 
+	AutoUlt = EMenu->CheckBox("Auto R(if 3 enemies in Range", true);
 	ComboR = RMenu->CheckBox("R When X Enemies in Range ", true);
 	UltEnemies = RMenu->AddInteger("Minimum enemies to hit with R", 1, 5, 2);
 
@@ -155,6 +157,15 @@ void Auto()
 	if (GEntityList->Player()->ManaPercent() >= HarassManaQ->GetInteger() && AutoE->Enabled() && (GOrbwalking->GetOrbwalkingMode() == kModeNone || GOrbwalking->GetOrbwalkingMode() == kModeLaneClear || GOrbwalking->GetOrbwalkingMode() == kModeLastHit || GOrbwalking->GetOrbwalkingMode() == kModeMixed|| GOrbwalking->GetOrbwalkingMode() == kModeFreeze|| GOrbwalking->GetOrbwalkingMode() == kModeCustom))
 	{
 		E->CastOnTarget(GTargetSelector->FindTarget(QuickestKill, SpellDamage, E->Range()));
+	}
+	if (GEntityList->Player()->ManaPercent() >= HarassManaQ->GetInteger() && AutoUlt->Enabled() && (GOrbwalking->GetOrbwalkingMode() == kModeNone || GOrbwalking->GetOrbwalkingMode() == kModeLaneClear || GOrbwalking->GetOrbwalkingMode() == kModeLastHit || GOrbwalking->GetOrbwalkingMode() == kModeMixed || GOrbwalking->GetOrbwalkingMode() == kModeFreeze || GOrbwalking->GetOrbwalkingMode() == kModeCustom || GOrbwalking->GetOrbwalkingMode() == kModeCombo))
+	{
+		auto target = GTargetSelector->FindTarget(QuickestKill, SpellDamage, R->Range());
+		int enemies = 0;
+		Vec3 pos = Vec3();
+		R->FindBestCastPosition(false, true, pos, enemies);
+		if (enemies >= 3)
+			R->CastOnPosition(pos);
 	}
 }
 PLUGIN_EVENT(void) OnGameUpdate()
