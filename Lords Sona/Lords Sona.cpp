@@ -28,6 +28,7 @@ IMenuOption* DrawReady;
 IMenuOption* DrawQ;
 IMenuOption* DrawW;
 IMenuOption* DrawE;
+IMenuOption* DrawR;
 
 ISpell2* Q;
 ISpell2* W;
@@ -44,7 +45,7 @@ void  Menu()
 	Drawings = MainMenu->AddMenu("Drawings");
 
 	ComboQ = QMenu->CheckBox("Use Q", true);
-	HarassManaQ = EMenu->AddInteger("Mana Manager(%)", 1, 100, 60);
+	HarassManaQ = QMenu->AddInteger("Mana Manager(%)", 1, 100, 60);
 	//FarmQ = QMenu->CheckBox("Use Q Farm", true);
 
 	ComboW = WMenu->CheckBox("Use W", true);
@@ -60,6 +61,7 @@ void  Menu()
 	DrawQ = Drawings->CheckBox("Draw Q", true);
 	DrawW = Drawings->CheckBox("Draw W", true);
 	DrawE = Drawings->CheckBox("Draw E", true);
+	DrawR = Drawings->CheckBox("Draw R", true);
 }
 void LoadSpells()
 {
@@ -147,6 +149,8 @@ void AutoW()
 
 			if (W->IsReady() && DrawW->Enabled()) { GRender->DrawOutlinedCircle(GEntityList->Player()->GetPosition(), Vec4(255, 255, 0, 255), W->Range()); }
 
+			if (R->IsReady() && DrawR->Enabled()) { GRender->DrawOutlinedCircle(GEntityList->Player()->GetPosition(), Vec4(255, 255, 0, 255), R->Range()); }
+
 		}
 		else
 		{
@@ -155,6 +159,8 @@ void AutoW()
 			if (DrawE->Enabled()) { GRender->DrawOutlinedCircle(GEntityList->Player()->GetPosition(), Vec4(255, 255, 0, 255), E->Range()); }
 
 			if (DrawW->Enabled()) { GRender->DrawOutlinedCircle(GEntityList->Player()->GetPosition(), Vec4(255, 255, 0, 255), W->Range()); }
+
+			if (DrawR->Enabled()) { GRender->DrawOutlinedCircle(GEntityList->Player()->GetPosition(), Vec4(255, 255, 0, 255), R->Range()); }
 		}
 	}
 	PLUGIN_EVENT(void) OnGameUpdate()
@@ -177,7 +183,7 @@ void AutoW()
 
 		GEventManager->AddEventHandler(kEventOnGameUpdate, OnGameUpdate);
 		GEventManager->AddEventHandler(kEventOnRender, OnRender);
-		GRender->NotificationEx(Color::LightBlue2().Get(), 2, true, true, "Lord's Sona Loaded - V1.0");
+		GRender->NotificationEx(Color::LightBlue2().Get(), 2, true, true, "Lord's Sona Loaded - V1.1(Small Fixes)");
 	}
 
 	PLUGIN_API void OnUnload()
